@@ -25,7 +25,7 @@ typedef	struct				s_tetrino
 # define EMPTY '.'
 
 # define TOO_MANY_EMPTY "File format error: too many empty lines\n"
-
+# define BAD_TETRINO_DATA ".....Bad tetrino data\n"
 # define USAGE1 "usage: ./fillit a_file\n"
 # define USAGE2 "a_file: contain valid tetrino with an empty line separator\n"
 
