@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "fillit.h"
 
 unsigned short int	*get_objects_local(void)
@@ -52,11 +53,12 @@ unsigned short int	shift_left(unsigned short int tetrino)
 	return (tetrino);
 }
 
-s_tetrino			*build_all_default(void)
+t_tetrino			*build_all_default(void)
 {
 	int					count;
 	unsigned short int	*def;
 	t_tetrino			*first;
+	t_tetrino			*t;
 
 	count = 0;
 	def = get_objects_local();

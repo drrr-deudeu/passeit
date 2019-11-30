@@ -15,6 +15,7 @@ SRCS		= 	fillit.c \
 				fillit_utils2.c \
 				fillit_utils3.c \
 				get_next_line.c \
+				tetrino_lst.c \
 				tetrino_bound.c \
 				tetrino_print.c
 

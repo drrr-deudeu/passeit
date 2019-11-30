@@ -20,29 +20,17 @@ static int				add_tetrino(t_tetrino **ll, char *b[4])
 {
 	unsigned short int	val;
 	t_tetrino			*t;
-	t_tetrino			*tmp;
 
 	val = make_tetrino(b[0], b[1], b[2], b[3]);
 	val = move_to_top(val);
 	t = make_s_tetrino(val);
-	if (t == NULL)
-		return (0);
-	if (*ll == NULL)
+	if (t)
 	{
-		*ll = t;
+		*ll = add_to_list(ll, t);
 		return (1);
 	}
-	tmp = *ll;
-	while (tmp)
-	{
-		if (tmp->next == NULL)
-		{
-			tmp->next = t;
-			return (1);
-		}
-		tmp = tmp->next;
-	}
-	return (1);
+	delete_list_tetrino(ll);
+	return (0);
 }
 
 static t_tetrino		*clean_on_error(t_tetrino *lst_ttx, int msg)
@@ -51,6 +39,20 @@ static t_tetrino		*clean_on_error(t_tetrino *lst_ttx, int msg)
 		write(STDERR_FILENO, TOO_MANY_EMPTY, sizeof(TOO_MANY_EMPTY));
 	delete_list_tetrino(&lst_ttx);
 	return (NULL);
+}
+
+static int				is_valid(int *cl, int *ce,  char *b[4], t_tetrino **lst)
+{
+	if (*cl == 4)
+	{
+		if (!add_tetrino(lst, b))
+			return (0);
+		*cl = 0;
+		*ce = 0;
+	}
+	if (*ce > 1)
+		return (0);
+	return (1);
 }
 
 static t_tetrino		*ft_fillit_reader(int fd)
@@ -79,17 +81,8 @@ static t_tetrino		*ft_fillit_reader(int fd)
 			count_line = 0;
 			count_empty++;
 		}
-		if (count_line == 4)
-		{
-			if (!add_tetrino(&lst_ttx, b))
-				return (clean_on_error(lst_ttx), 0);
-			count_line = 0;
-			count_empty = 0;
-		}
-		if (count_empty > 1)
-		{
+		if (!is_valid(&count_line, &count_empty, b, &lst_ttx))
 			return (clean_on_error(lst_ttx, 1));
-		}
 	}
 	return (lst_ttx);
 }

@@ -24,16 +24,16 @@ typedef	struct				s_tetrino
 # define SHAPE '#'
 # define EMPTY '.'
 
-# define TOO_MANY_EMPTY "File format error: too many empty line\n"
+# define TOO_MANY_EMPTY "File format error: too many empty lines\n"
 
 # define USAGE1 "usage: ./fillit a_file\n"
 # define USAGE2 "a_file: contain valid tetrino with an empty line separator\n"
 
 # define CANNOT_READ_FILE "Cannot read file."
 
-# define FILE_NOT_FORMA1 "tetrino: 4 lignes of 4 blocks (only # and .)\n"
+# define FILE_NOT_FORMA1 "tetrino: 4 lines with 4 blocks (only # and .)\n"
 # define FILE_NOT_FORMA2 "tetrino: each blocks next to at least one\n"
-# define FILE_NOT_FORMA3 "        one line to separate each tetrino\n"
+# define FILE_NOT_FORMA3 "         one line to separate each tetrino\n"
 # define FILE_NOT_FORMATED FILE_NOT_FORMA1 FILE_NOT_FORMA2 FILE_NOT_FORMA3
 
 # define SHAPES_MAX 19
@@ -50,7 +50,7 @@ unsigned short int			move_right(unsigned short int tetrino);
 unsigned short int			make_tetrino(char *a, char *b, char *c, char *d);
 
 unsigned short int			shift_left(unsigned short int t);
-s_tetrino					*build_all_default(void);
+t_tetrino					*build_all_default(void);
 int							is_valid_shape(unsigned short int t);
 int							is_on(unsigned short int tetrino, int index);
 
@@ -60,6 +60,7 @@ void						bound_x(unsigned short int i, int *x);
 void						bound(unsigned short int i, int *x, int *y);
 
 t_tetrino 					*add_to_list(t_tetrino **first, t_tetrino *new);
+void 						free_tetrino_list(t_tetrino **ll);
 
 void						print_line(unsigned char v);
 void						print_tetrino(t_tetrino *l);

@@ -23,11 +23,4 @@ int				get_next_line(const int fd, char **line);
 
 # define END_OF_LINE '\n'
 
-typedef	struct	s_fd_list
-{
-	int					fd;
-	t_list				*data;
-	struct s_fd_list	*next;
-}				t_fd_list;
-
 #endif
