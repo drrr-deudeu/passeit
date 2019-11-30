@@ -57,6 +57,7 @@ static int				is_valid(int *cl, int *ce, char *b[4], t_tetrino **lst)
 		{
 			write(STDERR_FILENO, BAD_TETRINO_DATA, sizeof(BAD_TETRINO_DATA));
 			delete_list_tetrino(lst);
+			print_list(build_all_default(), 0);
 			return (0);
 		}
 		*cl = 0;
@@ -116,6 +117,6 @@ int						main(int argc, char **argv)
 		write(STDERR_FILENO, FILE_NOT_FORMATED, sizeof(FILE_NOT_FORMATED));
 		return (1);
 	}
-	print_list(lst_ttx);
+	print_list(lst_ttx, 1);
 	return (0);
 }

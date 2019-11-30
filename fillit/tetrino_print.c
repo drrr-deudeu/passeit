@@ -34,15 +34,12 @@ void	print_line(unsigned char v)
 		ft_putchar(EMPTY);
 }
 
-void	print_tetrino(t_tetrino *l)
+void	print_tetrino(t_tetrino *l, int style)
 {
 	unsigned short int val;
 
 	if (l == NULL)
-	{
-		ft_putstr("NULL\n");
 		return ;
-	}
 	val = l->shape;
 	print_line(val >> 12);
 	ft_putchar('\n');
@@ -52,20 +49,25 @@ void	print_tetrino(t_tetrino *l)
 	ft_putchar('\n');
 	print_line(val);
 	ft_putchar('\n');
-	ft_putstr("val: ");
-	ft_putnbr(val);
-	ft_putstr(" min/max = ");
-	ft_putnbr(l->bounding[0]);
-	ft_putstr(", ");
-	ft_putnbr(l->bounding[1]);
-	ft_putchar('\n');
+	if (style == 1)
+	{
+		ft_putstr("val: ");
+		ft_putnbr(val);
+		ft_putstr(" min/max = ");
+		ft_putnbr(l->bounding[0]);
+		ft_putstr(", ");
+		ft_putnbr(l->bounding[1]);
+		ft_putchar('\n');
+	}
+	else
+		ft_putchar('\n');
 }
 
-void	print_list(t_tetrino *l)
+void	print_list(t_tetrino *l, int style)
 {
 	while (l)
 	{
-		print_tetrino(l);
+		print_tetrino(l,style);
 		l = l->next;
 	}
 }

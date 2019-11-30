@@ -25,7 +25,7 @@ typedef	struct				s_tetrino
 # define EMPTY '.'
 
 # define TOO_MANY_EMPTY "File format error: too many empty lines\n"
-# define BAD_TETRINO_DATA ".....Bad tetrino data\n"
+# define BAD_TETRINO_DATA "Bad tetrino data. Check valid:\n"
 # define USAGE1 "usage: ./fillit a_file\n"
 # define USAGE2 "a_file: contain valid tetrino with an empty line separator\n"
 
@@ -60,10 +60,9 @@ void						bound_x(unsigned short int i, int *x);
 void						bound(unsigned short int i, int *x, int *y);
 
 t_tetrino 					*add_to_list(t_tetrino **first, t_tetrino *new);
-void 						free_tetrino_list(t_tetrino **ll);
 
 void						print_line(unsigned char v);
-void						print_tetrino(t_tetrino *l);
-void						print_list(t_tetrino *l);
+void						print_tetrino(t_tetrino *l, int style);
+void						print_list(t_tetrino *l, int style);
 
 #endif

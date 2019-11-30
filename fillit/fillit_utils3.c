@@ -61,6 +61,7 @@ t_tetrino			*build_all_default(void)
 	t_tetrino			*t;
 
 	count = 0;
+	first = NULL;
 	def = get_objects_local();
 	while (count < SHAPES_MAX)
 	{
