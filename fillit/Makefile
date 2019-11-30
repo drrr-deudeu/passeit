@@ -17,6 +17,7 @@ SRCS		= 	fillit.c \
 				get_next_line.c \
 				tetrino_lst.c \
 				tetrino_bound.c \
+				fillit_grid.c \
 				tetrino_print.c
 
 OBJS		= ${SRCS:.c=.o}
@@ -27,7 +28,7 @@ CFLAGS		= -Wall -Wextra -Werror -I./libft/includes
 
 LDFLAGS		= -lft -L./libft
 
-.c.o:		
+.c.o:
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 NAME		=  fillit

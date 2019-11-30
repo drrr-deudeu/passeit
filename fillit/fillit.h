@@ -21,6 +21,13 @@ typedef	struct				s_tetrino
 	struct s_tetrino		*next;
 }							t_tetrino;
 
+typedef struct				s_grid
+{
+	t_tetrino 				*tetrino_input;
+	int				 		min_size;
+}							t_grid;
+
+
 # define SHAPE '#'
 # define EMPTY '.'
 
@@ -57,6 +64,7 @@ int							is_on(unsigned short int tetrino, int index);
 int							max_x(unsigned short int t);
 int							min_y(unsigned short int t);
 void						bound_x(unsigned short int i, int *x);
+void						bound_y(unsigned short int t, int *y);
 void						bound(unsigned short int i, int *x, int *y);
 
 t_tetrino 					*add_to_list(t_tetrino **first, t_tetrino *new);
@@ -64,5 +72,8 @@ t_tetrino 					*add_to_list(t_tetrino **first, t_tetrino *new);
 void						print_line(unsigned char v);
 void						print_tetrino(t_tetrino *l, int style);
 void						print_list(t_tetrino *l, int style);
+
+int							get_min_size(const t_grid *grid);
+t_grid						*init_grid(t_tetrino *lst);
 
 #endif

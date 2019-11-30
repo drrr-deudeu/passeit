@@ -97,6 +97,7 @@ int						main(int argc, char **argv)
 {
 	int			fd;
 	t_tetrino	*lst_ttx;
+	t_grid		*grid;
 
 	if (argc != 2)
 	{
@@ -118,5 +119,7 @@ int						main(int argc, char **argv)
 		return (1);
 	}
 	print_list(lst_ttx, 1);
+	grid = init_grid(lst_ttx);
+	ft_putnbr(grid->min_size);
 	return (0);
 }
