@@ -20,7 +20,7 @@ SRCS		= 	fillit.c \
 
 OBJS		= ${SRCS:.c=.o}
 
-CC			= gcc
+CC			= clang
 
 CFLAGS		= -Wall -Wextra -Werror -I./libft/includes
 

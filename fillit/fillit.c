@@ -45,8 +45,10 @@ static int				add_tetrino(t_tetrino **ll, char *b[4])
 	return (1);
 }
 
-static t_tetrino		*clean_on_error(t_tetrino *lst_ttx)
+static t_tetrino		*clean_on_error(t_tetrino *lst_ttx, int msg)
 {
+	if (msg == 1)
+		write(STDERR_FILENO, TOO_MANY_EMPTY, sizeof(TOO_MANY_EMPTY));
 	delete_list_tetrino(&lst_ttx);
 	return (NULL);
 }
@@ -80,14 +82,13 @@ static t_tetrino		*ft_fillit_reader(int fd)
 		if (count_line == 4)
 		{
 			if (!add_tetrino(&lst_ttx, b))
-				return (clean_on_error(lst_ttx));
+				return (clean_on_error(lst_ttx), 0);
 			count_line = 0;
 			count_empty = 0;
 		}
 		if (count_empty > 1)
 		{
-			write(STDERR_FILENO, TOO_MANY_EMPTY, sizeof(TOO_MANY_EMPTY));
-			return (clean_on_error(lst_ttx));
+			return (clean_on_error(lst_ttx, 1));
 		}
 	}
 	return (lst_ttx);

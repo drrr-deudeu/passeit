@@ -52,6 +52,24 @@ unsigned short int	shift_left(unsigned short int tetrino)
 	return (tetrino);
 }
 
+s_tetrino			*build_all_default(void)
+{
+	int					count;
+	unsigned short int	*def;
+	t_tetrino			*first;
+
+	count = 0;
+	def = get_objects_local();
+	while (count < SHAPES_MAX)
+	{
+		t = make_s_tetrino(def[count]);
+		if (t != NULL)
+			add_to_list(&first, t);
+		count++;
+	}
+	return (first);
+}
+
 int					is_valid_shape(unsigned short int t)
 {
 	int					count;

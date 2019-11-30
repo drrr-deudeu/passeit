@@ -50,6 +50,7 @@ unsigned short int			move_right(unsigned short int tetrino);
 unsigned short int			make_tetrino(char *a, char *b, char *c, char *d);
 
 unsigned short int			shift_left(unsigned short int t);
+s_tetrino					*build_all_default(void);
 int							is_valid_shape(unsigned short int t);
 int							is_on(unsigned short int tetrino, int index);
 
@@ -57,6 +58,8 @@ int							max_x(unsigned short int t);
 int							min_y(unsigned short int t);
 void						bound_x(unsigned short int i, int *x);
 void						bound(unsigned short int i, int *x, int *y);
+
+t_tetrino 					*add_to_list(t_tetrino **first, t_tetrino *new);
 
 void						print_line(unsigned char v);
 void						print_tetrino(t_tetrino *l);
