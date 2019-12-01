@@ -78,5 +78,7 @@ t_grid						*init_grid(t_tetrino *lst);
 
 int							test_insert(t_grid *g, int x, int y, t_tetrino *t);
 void						span_x(t_tetrino *t, int line, int *st, int *span);
-int							get_span(unsigned char val, int pos);
+int							get_xspan(unsigned char val, int pos);
+void						span_y(t_tetrino *t, int col, int *st, int *span);
+int							get_yspan(unsigned int ut, int col);
 #endif
