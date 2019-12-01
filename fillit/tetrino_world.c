@@ -49,7 +49,6 @@ void			span_x(t_tetrino *t, int line, int *start, int *span)
 	shift[1] = 8;
 	shift[2] = 4;
 	shift[3] = 0;
-	val = 0;
 	val = (unsigned char)((t->shape >> shift[line]) & 0xF);
 	*start = -1;
 	*span = 0;
@@ -65,52 +64,53 @@ void			span_x(t_tetrino *t, int line, int *start, int *span)
 		*span = get_xspan(val, *start);
 }
 
-int				get_yspan(unsigned int ut, int col)
+int				get_yspan(unsigned int ut, int col, int *shift, int pos)
 {
-	if (col == 3)
+	if (pos == 3)
 		return (1);
-	if (col == 2)
+	if (pos == 2)
 	{
-		if (((ut >> (15 - 0)) & 0x0001) == 1)
+		if (((ut >> (3 - shift[col])) & 0x0001) == 1)
 			return (2);
 		return (1);
 	}
-	/*
 	if (pos == 1)
 	{
-		if (val & 0x1)
+		if (((ut >> (3 - shift[col])) & 0x0001) == 1)
 			return (3);
-		if (val & 0x10)
+		if (((ut >> (7 - shift[col])) & 0x0001) == 1)
 			return (2);
 		return (1);
 	}
-	if (val & 0x1)
+	if (((ut >> (3 - shift[col])) & 0x0001) == 1)
 		return (4);
-	if (val & 0x01)
+	if (((ut >> (7 - shift[col])) & 0x0001) == 1)
 		return (3);
-	if (val & 0x100)
+	if (((ut >> (11 - shift[col])) & 0x0001) == 1)
 		return (2);
-	*/
 	return (1);
 }
 
 void			span_y(t_tetrino *t, int col, int *start, int *span)
 {
-	unsigned char val;
+	int shift[4];
 
-	val = 0;
+	shift[0]= 0;
+	shift[1] = 1;
+	shift[2] = 2;
+	shift[3] = 3;
 	*start = -1;
 	*span = 0;
-	if (col == 0 && ((t->shape >> (15)) & 0x1) == 1)
+	if (((t->shape >> (15 - shift[col])) & 0x001) == 1)
 		*start = 0;
-	else if (col == 1 && ((t->shape >> (15 - 1)) & 0x1) == 1)
+	if (*start == -1 && ((t->shape >> (11 - shift[col])) & 0x001) == 1)
 		*start = 1;
-	else if (col == 2 && ((t->shape >> (15 - 2)) & 0x1) == 1)
+	if (*start == -1 && ((t->shape >> (7 - shift[col])) & 0x001) == 1)
 		*start = 2;
-	else if (col == 3 && ((t->shape >> (15 - 3)) & 0x1) == 1)
+	if (*start == -1 && ((t->shape >> (3 - shift[col])) & 0x001) == 1)
 		*start = 3;
 	if (*start != -1)
-		*span = get_yspan(col, *start);
+		*span = get_yspan(t->shape, col, shift, *start);
 }
 
 int		test_insert(t_grid *grid, int offset_x, int offset_y, t_tetrino *t)
