@@ -20,7 +20,7 @@ void	*ft_memalloc(size_t size)
 	if (size == 0)
 		return (NULL);
 	m = (void *)malloc(size);
-	if (m <= 0)
+	if (m == 0)
 		return (NULL);
 	return (ft_bzero(m, size));
 }

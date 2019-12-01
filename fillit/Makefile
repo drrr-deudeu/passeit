@@ -18,7 +18,8 @@ SRCS		= 	fillit.c \
 				tetrino_lst.c \
 				tetrino_bound.c \
 				fillit_grid.c \
-				tetrino_print.c
+				tetrino_print.c \
+				tetrino_world.c
 
 OBJS		= ${SRCS:.c=.o}
 
