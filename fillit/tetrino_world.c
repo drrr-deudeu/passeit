@@ -70,7 +70,7 @@ int		test_insert(t_grid *grid, int offset_x, int offset_y, t_tetrino *t)
 	int start;
 	int span;
 	int line;
-	printf("grid max_size %d, offset = (%d,%d)", grid->min_size, offset_x, offset_y);
+	printf("grid max_size %d, offset = (%d,%d)\n", grid->min_size, offset_x, offset_y);
 	while(t)
 	{
 		line = 0;

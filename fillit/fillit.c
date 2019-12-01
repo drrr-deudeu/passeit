@@ -120,6 +120,7 @@ int						main(int argc, char **argv)
 	}
 	print_list(lst_ttx, 1);
 	grid = init_grid(lst_ttx);
-	ft_putnbr(grid->min_size);
+	/*ft_putnbr(grid->min_size);*/
+	test_insert(grid, 0, 0, grid->tetrino_input);
 	return (0);
 }

@@ -53,7 +53,7 @@ void	print_tetrino(t_tetrino *l, int style)
 	{
 		ft_putstr("val: ");
 		ft_putnbr(val);
-		ft_putstr(" min/max = ");
+		ft_putstr(" width/height = ");
 		ft_putnbr(l->bounding[0]);
 		ft_putstr(", ");
 		ft_putnbr(l->bounding[1]);

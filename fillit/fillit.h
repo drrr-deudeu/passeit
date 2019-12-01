@@ -76,4 +76,7 @@ void						print_list(t_tetrino *l, int style);
 int							get_min_size(const t_grid *grid);
 t_grid						*init_grid(t_tetrino *lst);
 
+int							test_insert(t_grid *g, int x, int y, t_tetrino *t);
+void						span_x(t_tetrino *t, int line, int *st, int *span);
+int							get_span(unsigned char val, int pos);
 #endif
