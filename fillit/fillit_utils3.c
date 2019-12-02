@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 08:13:06 by etexier           #+#    #+#             */
-/*   Updated: 2019/11/28 15:45:44 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 18:32:33 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int					is_valid_shape(unsigned short int t)
 	while (count < SHAPES_MAX)
 	{
 		if (t == def[count])
-			return (1);
+			return (count);
 		count++;
 	}
 	return (0);

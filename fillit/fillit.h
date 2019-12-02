@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:55:46 by etexier           #+#    #+#             */
-/*   Updated: 2019/12/02 14:04:18 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 18:50:59 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef	struct				s_span
 typedef	struct				s_tetrino
 {
 	unsigned short int		shape;
+	int						base_shape;
 	int						index[4];
 	int						bounding[2];
 	t_span					spanx[4];
@@ -33,6 +34,7 @@ typedef struct				s_grid
 {
 	t_tetrino				*tetrino_input;
 	int						min_size;
+	char					*table;
 }							t_grid;
 
 # define SHAPE '#'
@@ -50,7 +52,9 @@ typedef struct				s_grid
 # define SHAPES_MAX 19
 
 void						delete_list_tetrino(t_tetrino **lst);
-t_tetrino					*alloc_struct_tetrino(int *d, unsigned short int s);
+t_tetrino					*alloc_struct_tetrino(int *d,
+										unsigned short int s,
+										int type);
 t_tetrino					*make_s_tetrino(unsigned short int t);
 unsigned short int			get_single_row_val(char *a_row);
 unsigned short int			add_tetrino_line(unsigned short val, char *a_row);
@@ -79,6 +83,8 @@ void						print_bounding(t_tetrino *l, unsigned short int v);
 void						print_span(t_tetrino *l);
 void						print_list(t_tetrino *l, int style);
 
+int							resolve_dummy(t_grid *grid);
+int							display_result(t_grid *grid);
 int							get_min_size(const t_grid *grid);
 t_grid						*init_grid(t_tetrino *lst);
 

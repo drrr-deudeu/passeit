@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 17:24:46 by etexier           #+#    #+#             */
-/*   Updated: 2019/11/28 15:44:32 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 18:46:30 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void				delete_list_tetrino(t_tetrino **lst)
 	*lst = NULL;
 }
 
-t_tetrino			*alloc_struct_tetrino(int *tmp, unsigned short int shape)
+t_tetrino			*alloc_struct_tetrino(int *tmp,
+									unsigned short int shape,
+									int type)
 {
 	t_tetrino	*ptr;
 	int			index;
@@ -37,6 +39,7 @@ t_tetrino			*alloc_struct_tetrino(int *tmp, unsigned short int shape)
 	if (ptr == NULL)
 		return (NULL);
 	ptr->shape = shape;
+	ptr->base_shape = type;
 	ptr->next = NULL;
 	index = 0;
 	while (index < 4)
@@ -70,9 +73,10 @@ t_tetrino			*make_s_tetrino(unsigned short int t)
 	}
 	if (index != 4)
 		return (NULL);
-	if (!is_valid_shape(t))
+	count = is_valid_shape(t);
+	if (!count)
 		return (NULL);
-	return (alloc_struct_tetrino(tmp, t));
+	return (alloc_struct_tetrino(tmp, t, count));
 }
 
 unsigned short int	get_single_row_val(char *a_row)

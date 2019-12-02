@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:23 by etexier           #+#    #+#             */
-/*   Updated: 2019/12/02 13:48:49 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 18:32:48 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int						main(int argc, char **argv)
 		return (write(STDERR_FILENO, FILE_NOT_FORMAT, sizeof(FILE_NOT_FORMAT)));
 	print_list(lst_ttx, 2);
 	grid = init_grid(lst_ttx);
-	ft_putnbr(grid->min_size);
+	if (resolve_dummy(grid))
+		display_result(grid);
 	return (0);
 }

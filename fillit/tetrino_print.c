@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:55:13 by etexier           #+#    #+#             */
-/*   Updated: 2019/12/02 13:05:22 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 18:40:45 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ void	print_tetrino(t_tetrino *l, int style)
 	print_line(val);
 	ft_putchar('\n');
 	if (style == 1)
-		print_bounding(l, val);
+		print_bounding(l, l->base_shape);
 	if (style == 2)
 	{
-		print_bounding(l, val);
+		print_bounding(l, l->base_shape);
 		print_span(l);
 	}
 	else
