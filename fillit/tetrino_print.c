@@ -34,6 +34,45 @@ void	print_line(unsigned char v)
 		ft_putchar(EMPTY);
 }
 
+void	print_bounding(t_tetrino *l, unsigned short int val)
+{
+	ft_putstr("val: ");
+	ft_putnbr(val);
+	ft_putstr(" width/height = ");
+	ft_putnbr(l->bounding[0]);
+	ft_putstr(", ");
+	ft_putnbr(l->bounding[1]);
+	ft_putchar('\n');
+}
+
+void	print_span(t_tetrino *l)
+{
+	int count;
+
+	count = 0;
+	ft_putstr("row\n");
+	while (count < 4)
+	{
+		ft_putstr("start: ");
+		ft_putnbr(l->spanx[count].start);
+		ft_putstr(" span: ");
+		ft_putnbr(l->spanx[count].span);
+		ft_putstr("\n");
+		count++;
+	}
+	count = 0;
+	ft_putstr("col\n");
+	while (count < 4)
+	{
+		ft_putstr("start: ");
+		ft_putnbr(l->spany[count].start);
+		ft_putstr(" span: ");
+		ft_putnbr(l->spanx[count].span);
+		ft_putstr("\n");
+		count++;
+	}
+}
+
 void	print_tetrino(t_tetrino *l, int style)
 {
 	unsigned short int val;
@@ -50,14 +89,11 @@ void	print_tetrino(t_tetrino *l, int style)
 	print_line(val);
 	ft_putchar('\n');
 	if (style == 1)
+		print_bounding(l, val);
+	if (style == 2)
 	{
-		ft_putstr("val: ");
-		ft_putnbr(val);
-		ft_putstr(" width/height = ");
-		ft_putnbr(l->bounding[0]);
-		ft_putstr(", ");
-		ft_putnbr(l->bounding[1]);
-		ft_putchar('\n');
+		print_bounding(l, val);
+		print_span(l);
 	}
 	else
 		ft_putchar('\n');

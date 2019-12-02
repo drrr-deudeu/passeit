@@ -13,11 +13,19 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
+typedef	struct				s_span
+{
+	int						start;
+	int						span;
+}							t_span;
+
 typedef	struct				s_tetrino
 {
 	unsigned short int		shape;
 	int						index[4];
 	int						bounding[2];
+	t_span					spanx[4];
+	t_span					spany[4];
 	struct s_tetrino		*next;
 }							t_tetrino;
 
@@ -71,12 +79,14 @@ t_tetrino 					*add_to_list(t_tetrino **first, t_tetrino *new);
 
 void						print_line(unsigned char v);
 void						print_tetrino(t_tetrino *l, int style);
+void						print_bounding(t_tetrino *l, unsigned short int v);
+void						print_span(t_tetrino *l);
 void						print_list(t_tetrino *l, int style);
 
 int							get_min_size(const t_grid *grid);
 t_grid						*init_grid(t_tetrino *lst);
 
-int							test_insert(t_grid *g, int x, int y, t_tetrino *t);
+void						do_span(t_tetrino *t);
 void						span_x(t_tetrino *t, int line, int *st, int *span);
 int							get_xspan(unsigned char val, int pos);
 void						span_y(t_tetrino *t, int col, int *st, int *span);

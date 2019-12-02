@@ -45,6 +45,7 @@ t_tetrino			*alloc_struct_tetrino(int *tmp, unsigned short int shape)
 		index++;
 	}
 	bound(shape, ptr->bounding, ptr->bounding + 1);
+	do_span(ptr);
 	return (ptr);
 }
 

@@ -118,9 +118,8 @@ int						main(int argc, char **argv)
 		write(STDERR_FILENO, FILE_NOT_FORMATED, sizeof(FILE_NOT_FORMATED));
 		return (1);
 	}
-	print_list(lst_ttx, 1);
+	print_list(lst_ttx, 2);
 	grid = init_grid(lst_ttx);
-	/*ft_putnbr(grid->min_size);*/
-	test_insert(grid, 0, 0, grid->tetrino_input);
+	ft_putnbr(grid->min_size);
 	return (0);
 }

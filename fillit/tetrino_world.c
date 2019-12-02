@@ -113,25 +113,22 @@ void			span_y(t_tetrino *t, int col, int *start, int *span)
 		*span = get_yspan(t->shape, col, shift, *start);
 }
 
-int		test_insert(t_grid *grid, int offset_x, int offset_y, t_tetrino *t)
+void			do_span(t_tetrino *t)
 {
 	int start;
 	int span;
 	int line;
-	printf("grid max_size %d, offset = (%d,%d)\n", grid->min_size, offset_x, offset_y);
-	while(t)
+
+	line = 0;
+	while (line < 4)
 	{
-		line = 0;
-		print_tetrino(t, 1);
-		while (line < 4)
-		{
-			span_x(t, line, &start, &span);
-			printf("line %d, start %d, span %d\n", line, start, span);
-			span_y(t, line, &start, &span);
-			printf("col %d, start %d, span %d\n", line, start, span);
-			line++;
-		}
-		t = t->next;
+		span_x(t, line, &start, &span);
+		t->spanx[line].start = start;
+		t->spanx[line].span = span;
+		span_y(t, line, &start, &span);
+		t->spany[line].start = start;
+		t->spany[line].span = span;
+		line++;
 	}
-	return (1);
+	return ;
 }
