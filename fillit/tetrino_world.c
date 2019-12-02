@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 13:03:38 by etexier           #+#    #+#             */
-/*   Updated: 2019/12/02 13:08:16 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 13:58:29 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int				get_xspan(unsigned char val, int pos)
 
 void			span_x(t_tetrino *t, int line, int *start, int *span)
 {
-	int shift[4];
-	unsigned char val;
+	int				shift[4];
+	unsigned char	val;
 
 	shift[0] = 12;
 	shift[1] = 8;

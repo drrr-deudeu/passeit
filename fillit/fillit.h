@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:55:46 by etexier           #+#    #+#             */
-/*   Updated: 2019/11/28 16:09:47 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 14:04:18 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ typedef	struct				s_tetrino
 
 typedef struct				s_grid
 {
-	t_tetrino 				*tetrino_input;
-	int				 		min_size;
+	t_tetrino				*tetrino_input;
+	int						min_size;
 }							t_grid;
-
 
 # define SHAPE '#'
 # define EMPTY '.'
@@ -44,12 +43,9 @@ typedef struct				s_grid
 # define USAGE1 "usage: ./fillit a_file\n"
 # define USAGE2 "a_file: contain valid tetrino with an empty line separator\n"
 
-# define CANNOT_READ_FILE "Cannot read file."
+# define CANNOT_RD_FILE "Cannot read file.\n"
 
-# define FILE_NOT_FORMA1 "tetrino: 4 lines with 4 blocks (only # and .)\n"
-# define FILE_NOT_FORMA2 "tetrino: each blocks next to at least one\n"
-# define FILE_NOT_FORMA3 "         one line to separate each tetrino\n"
-# define FILE_NOT_FORMATED FILE_NOT_FORMA1 FILE_NOT_FORMA2 FILE_NOT_FORMA3
+# define FILE_NOT_FORMAT "Wrong Format\n"
 
 # define SHAPES_MAX 19
 
@@ -75,7 +71,7 @@ void						bound_x(unsigned short int i, int *x);
 void						bound_y(unsigned short int t, int *y);
 void						bound(unsigned short int i, int *x, int *y);
 
-t_tetrino 					*add_to_list(t_tetrino **first, t_tetrino *new);
+t_tetrino					*add_to_list(t_tetrino **first, t_tetrino *new);
 
 void						print_line(unsigned char v);
 void						print_tetrino(t_tetrino *l, int style);
@@ -91,4 +87,5 @@ void						span_x(t_tetrino *t, int line, int *st, int *span);
 int							get_xspan(unsigned char val, int pos);
 void						span_y(t_tetrino *t, int col, int *st, int *span);
 int							get_yspan(unsigned int u, int col, int *s, int pos);
+
 #endif

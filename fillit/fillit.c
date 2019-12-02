@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:23 by etexier           #+#    #+#             */
-/*   Updated: 2019/12/02 13:38:31 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 13:48:49 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,21 +102,14 @@ int						main(int argc, char **argv)
 	if (argc != 2)
 	{
 		write(STDERR_FILENO, USAGE1, sizeof(USAGE1));
-		write(STDERR_FILENO, USAGE2, sizeof(USAGE2));
-		return (1);
+		return (write(STDERR_FILENO, USAGE2, sizeof(USAGE2)));
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		write(STDERR_FILENO, CANNOT_READ_FILE, sizeof(CANNOT_READ_FILE));
-		return (1);
-	}
+		return (write(STDERR_FILENO, CANNOT_RD_FILE, sizeof(CANNOT_RD_FILE)));
 	lst_ttx = ft_fillit_reader(fd);
 	if (lst_ttx == NULL)
-	{
-		write(STDERR_FILENO, FILE_NOT_FORMATED, sizeof(FILE_NOT_FORMATED));
-		return (1);
-	}
+		return (write(STDERR_FILENO, FILE_NOT_FORMAT, sizeof(FILE_NOT_FORMAT)));
 	print_list(lst_ttx, 2);
 	grid = init_grid(lst_ttx);
 	ft_putnbr(grid->min_size);
