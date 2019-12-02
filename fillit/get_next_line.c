@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:54:44 by etexier           #+#    #+#             */
-/*   Updated: 2019/11/26 16:44:28 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 11:33:04 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,21 @@
 #include "libft.h"
 #include "get_next_line.h"
 
-static int		pop_a_line(char **ptr, int fd, char **line, ssize_t count)
+static int			replace_none_printable(int fd, char **ptr, long len)
+{
+	if (!ft_isprint(ptr[fd][len]) && ptr[fd][len] != '\t')
+		ptr[fd][len] = '\\';
+	return (len + 1);
+}
+
+static int			pop_a_line(char **ptr, int fd, char **line, ssize_t count)
 {
 	char	*tmp;
-	int		len;
+	long	len;
 
 	len = 0;
 	while (ptr[fd][len] != END_OF_LINE && ptr[fd][len] != '\0')
-		len++;
+		len = replace_none_printable(fd, ptr, len);
 	if (ptr[fd][len] == END_OF_LINE)
 	{
 		*line = ft_strsub(ptr[fd], 0, len);

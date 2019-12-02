@@ -6,18 +6,18 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:23 by etexier           #+#    #+#             */
-/*   Updated: 2019/11/28 16:25:08 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 13:09:57 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "fillit.h"
 
-int					get_min_size(const t_grid *grid)
+int				get_min_size(const t_grid *grid)
 {
-	int count;
-	int res;
-	t_tetrino *data;
+	int			count;
+	int			res;
+	t_tetrino	*data;
 
 	data = grid->tetrino_input;
 	count = 0;
@@ -32,9 +32,9 @@ int					get_min_size(const t_grid *grid)
 	return (res);
 }
 
-t_grid				*init_grid(t_tetrino *lst)
+t_grid			*init_grid(t_tetrino *lst)
 {
-	t_grid			*grid;
+	t_grid	*grid;
 
 	grid = (t_grid *)malloc(sizeof(t_grid));
 	if (grid == NULL)

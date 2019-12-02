@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tetrix_world.c                                     :+:      :+:    :+:   */
+/*   tetrino_world.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 14:37:51 by etexier           #+#    #+#             */
-/*   Updated: 2019/11/28 16:12:44 by etexier          ###   ########.fr       */
+/*   Created: 2019/12/02 13:03:38 by etexier           #+#    #+#             */
+/*   Updated: 2019/12/02 13:08:16 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
-#include <stdio.h>
+
 int				get_xspan(unsigned char val, int pos)
 {
 	if (pos == 3)
@@ -42,10 +42,10 @@ int				get_xspan(unsigned char val, int pos)
 
 void			span_x(t_tetrino *t, int line, int *start, int *span)
 {
-	unsigned char val;
 	int shift[4];
+	unsigned char val;
 
-	shift[0]= 12;
+	shift[0] = 12;
 	shift[1] = 8;
 	shift[2] = 4;
 	shift[3] = 0;
@@ -95,7 +95,7 @@ void			span_y(t_tetrino *t, int col, int *start, int *span)
 {
 	int shift[4];
 
-	shift[0]= 0;
+	shift[0] = 0;
 	shift[1] = 1;
 	shift[2] = 2;
 	shift[3] = 3;

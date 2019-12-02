@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:55:13 by etexier           #+#    #+#             */
-/*   Updated: 2019/11/28 15:56:16 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 13:05:22 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	print_list(t_tetrino *l, int style)
 {
 	while (l)
 	{
-		print_tetrino(l,style);
+		print_tetrino(l, style);
 		l = l->next;
 	}
 }

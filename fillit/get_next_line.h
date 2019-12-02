@@ -6,14 +6,12 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:25:43 by etexier           #+#    #+#             */
-/*   Updated: 2019/11/26 13:54:56 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 10:54:52 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# include "libft.h"
 
 int				get_next_line(const int fd, char **line);
 
