@@ -13,6 +13,12 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 #include <stdio.h>
+
+# define SHAPE '#'
+# define EMPTY '.'
+# define GRID_SIZE_MAX 15
+# define SHAPES_MAX 19
+
 typedef	struct				s_span
 {
 	int						start;
@@ -24,7 +30,7 @@ typedef	struct				s_tetrino
 	unsigned short int		shape;
 	int						base_shape;
 	int						index[4];
-	int						bounding[2];
+	int						box[2];
 	t_span					spanx[4];
 	t_span					spany[4];
 	struct s_tetrino		*next;
@@ -33,26 +39,18 @@ typedef	struct				s_tetrino
 typedef struct				s_grid
 {
 	t_tetrino				*tetrino_input;
-	int						min_size;
-	char					table[15][15];
+	int						csize;
+	char					table[GRID_SIZE_MAX][GRID_SIZE_MAX];
 }							t_grid;
-
-# define SHAPE '#'
-# define EMPTY '.'
 
 # define TOO_MANY_EMPTY "File format error: too many empty lines\n"
 # define BAD_TETRINO_DATA "Bad tetrino data. Check valid:\n"
 # define USAGE1 "usage: ./fillit a_file\n"
 # define USAGE2 "a_file: contain valid tetrino with an empty line separator\n"
-
 # define CANNOT_RD_FILE "Cannot read file.\n"
-
 # define FILE_NOT_FORMAT "Wrong Format\n"
 
-# define SHAPES_MAX 19
-
-int							get_x(int i, int row_size);
-int							get_y(int i, int row_size);
+int							is_candidate(t_grid *g, int x, int y, t_tetrino *t);
 
 void						delete_list_tetrino(t_tetrino **lst);
 t_tetrino					*alloc_struct_tetrino(int *d,
@@ -82,13 +80,13 @@ t_tetrino					*add_to_list(t_tetrino **first, t_tetrino *new);
 
 void						print_line(unsigned char v);
 void						print_tetrino(t_tetrino *l, int style);
-void						print_bounding(t_tetrino *l, unsigned short int v);
+void						print_box(t_tetrino *l, unsigned short int v);
 void						print_span(t_tetrino *l);
 void						print_list(t_tetrino *l, int style);
 
 int							resolve_dummy(t_grid *grid);
 int							display_result(t_grid *grid);
-int							get_min_size(const t_grid *grid);
+int							get_csize(const t_grid *grid);
 t_grid						*init_grid(t_tetrino *lst);
 
 void						do_span(t_tetrino *t);

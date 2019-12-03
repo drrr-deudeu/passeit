@@ -11,6 +11,7 @@
 #******************************************************************************#
 
 SRCS		= 	fillit.c \
+				fillit_utils.c \
 				fillit_utils1.c \
 				fillit_utils2.c \
 				fillit_utils3.c \
@@ -21,16 +22,18 @@ SRCS		= 	fillit.c \
 				tetrino_print.c \
 				tetrino_world.c
 
+DEPENDS		:= $(patsubst %.c,%.d,$(SRCS))
+
 OBJS		= ${SRCS:.c=.o}
 
 CC			= clang
 
-CFLAGS		= -Wall -Wextra -Werror -I./libft/includes
+CFLAGS		= -Wall -Wextra -Werror -I./libft/includes -I.
 
 LDFLAGS		= -lft -L./libft
 
 .c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+			${CC} ${CFLAGS} -MMD -MP -c $< -o ${<:.c=.o}
 
 NAME		=  fillit
 
@@ -39,14 +42,21 @@ AR			= ar rc
 RM			= rm -f
 
 ${NAME}:	${OBJS}
-			${CC} -o ${NAME} ${OBJS} ${LDFLAGS}
+			${CC} -o ${NAME} ${OBJS} ${LDFLAGS} ${CFLAGS}
 
-all:		${NAME}
+all:		parking
+
+parking:	$(OBJS)
+			$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+-include $(DEPENDS)
 
 clean:
-			${RM} ${OBJS}
+			${RM} ${OBJS} ${DEPENDS}
 
 fclean:		clean
 			${RM} ${NAME}
 
 re:			fclean all
+
+.PHONY: all clean re

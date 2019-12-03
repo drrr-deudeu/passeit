@@ -47,7 +47,7 @@ t_tetrino			*alloc_struct_tetrino(int *tmp,
 		ptr->index[index] = tmp[index];
 		index++;
 	}
-	bound(shape, ptr->bounding, ptr->bounding + 1);
+	bound(shape, ptr->box, ptr->box + 1);
 	do_span(ptr);
 	return (ptr);
 }

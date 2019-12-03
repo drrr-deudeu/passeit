@@ -34,14 +34,14 @@ void	print_line(unsigned char v)
 		ft_putchar(EMPTY);
 }
 
-void	print_bounding(t_tetrino *l, unsigned short int val)
+void	print_box(t_tetrino *l, unsigned short int val)
 {
 	ft_putstr("val: ");
 	ft_putnbr(val);
 	ft_putstr(" width/height = ");
-	ft_putnbr(l->bounding[0]);
+	ft_putnbr(l->box[0]);
 	ft_putstr(", ");
-	ft_putnbr(l->bounding[1]);
+	ft_putnbr(l->box[1]);
 	ft_putchar('\n');
 }
 
@@ -89,10 +89,10 @@ void	print_tetrino(t_tetrino *l, int style)
 	print_line(val);
 	ft_putchar('\n');
 	if (style == 1)
-		print_bounding(l, l->base_shape);
+		print_box(l, l->base_shape);
 	if (style == 2)
 	{
-		print_bounding(l, l->base_shape);
+		print_box(l, l->base_shape);
 		print_span(l);
 	}
 	else

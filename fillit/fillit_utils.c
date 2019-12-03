@@ -12,35 +12,56 @@
 
 #include "fillit.h"
 
-int		get_x(int i, int row_size)
+int		check_line(char *ptr, t_tetrino *t, int lline)
 {
-    return (i % row_size);
-}
+	int		start;
 
-int		get_y(int i, int row_size)
-{
-    return (i / row_size);
-}
-
-int		is_insertable(t_grid *grid, int grid_index, t_tetrino *t)
-{
-	int		x;
-	int		y;
-	int		offset;
-	int		i;
-
-	x = get_x(grid_index, grid->min_size);
-	y = get_y(grid_index, grid->min_size);
-	offset = x + t->spanx[0].start;
-	if (grid->table[offset] != 0)
-			return (0);
-
-	i = 0;
-	while (i < 4)
+	start = t->spanx[lline].start;
+	while (start < t->spanx[lline].span)
 	{
+		if (*ptr != EMPTY)
+			return (0);
+		ptr++;
+		start++;
+	}
+	return (1);
+}
 
-		offset += (grid->min_size);
-		i++;
+int		check_col(char *ptr, int stride, t_tetrino *t, int lline)
+{
+	int		start;
+
+	start = t->spany[lline].start;
+	while (start < t->spany[lline].span)
+	{
+		if (*ptr != EMPTY)
+			return (0);
+		ptr += stride;
+		start++;
+	}
+	return (1);
+}
+
+int		is_candidate(t_grid *grid, int x, int y, t_tetrino *t)
+{
+	int		count;
+	t_span	*axe;
+	int		stride;
+
+	if ((x + t->box[0] > grid->csize) || (y + t->box[1] > grid->csize))
+		return (0);
+	count = 0;
+	axe = t->spanx;
+	stride = 1;
+	if (t->box[0] < t->box[1])
+	{
+		axe = t->spany;
+		stride = GRID_SIZE_MAX;
+	}
+	while (count < 4)
+	{
+		if (axe[count].start == -1)
+			return(0);
 	}
 	return (1);
 }

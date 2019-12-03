@@ -39,6 +39,8 @@ SRCS		= 	srcs/ft_memset.c \
 				srcs/ft_putnbr.c srcs/ft_putchar.c srcs/ft_putstr.c \
 				srcs/ft_lstnew.c srcs/ft_lstdelone.c srcs/ft_lstdel.c srcs/ft_lstadd.c srcs/ft_lstiter.c srcs/ft_lstmap.c
 
+DEPENDS		:= $(patsubst %.c,%.d,$(SRCS))
+
 OBJS		= ${SRCS:.c=.o}
 
 CC			= gcc
@@ -46,7 +48,7 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -I./includes
 
 .c.o:		
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+			${CC} ${CFLAGS} -MMD -MP -c $< -o ${<:.c=.o}
 
 NAME		=  libft.a
 
@@ -57,10 +59,15 @@ RM			= rm -f
 ${NAME}:	${OBJS}
 			${AR} ${NAME} ${OBJS}
 
-all:		${NAME}
+all:		parking
+
+parking:	$(OBJS)
+			$(CC) $(CFLAGS) ${LDFLAGS} $^ -o $@
+
+-include $(DEPENDS)
 
 clean:
-			${RM} ${OBJS}
+			${RM} ${OBJS} ${DEPENDS} parking
 
 fclean:		clean
 			${RM} ${NAME}
