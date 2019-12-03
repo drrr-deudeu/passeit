@@ -6,7 +6,7 @@
 /*   By: etexier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:54:44 by etexier           #+#    #+#             */
-/*   Updated: 2019/12/02 11:33:04 by etexier          ###   ########.fr       */
+/*   Updated: 2019/12/02 17:41:59 by etexier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 
 static int			replace_none_printable(int fd, char **ptr, long len)
 {
-	if (!ft_isprint(ptr[fd][len]) && ptr[fd][len] != '\t')
+	if (!ft_isprint(ptr[fd][len]) &&
+		ptr[fd][len] != '\t' &&
+		ptr[fd][len] != '\v' &&
+		ptr[fd][len] != '\r')
 		ptr[fd][len] = '\\';
 	return (len + 1);
 }
