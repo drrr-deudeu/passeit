@@ -16,16 +16,21 @@
 
 int				display_result(t_grid *grid)
 {
-	int		count;
+	int		x;
+	int		y;
 
 	ft_putstr("in display result\n");
-	count = 0;
-	while (count < grid->min_size * grid->min_size)
+	x = 0;
+	while (x < grid->min_size)
 	{
-		if ((count % grid->min_size == 0) && count != 0)
-			ft_putchar('\n');
-		ft_putchar(grid->table[count]);
-		count++;
+		y = 0;
+		while (y < grid->min_size)
+		{
+			ft_putchar(grid->table[x][y]);
+			y++;
+		}
+		ft_putchar('\n');
+		x++;
 	}
 	ft_putchar('\n');
 	return (1);
@@ -34,9 +39,9 @@ int				display_result(t_grid *grid)
 int				insert_to_table(t_grid *grid, t_tetrino *t)
 {
 	ft_putnbr(grid->min_size);
+	ft_putnbr(t->base_shape);
 	ft_putchar('\n');
-	ft_putnbr(t->shape);
-	ft_putchar('\n');
+	/*grid->table[t->index[0]]*/
 	return (1);
 }
 
@@ -45,11 +50,11 @@ int				resolve_dummy(t_grid *grid)
 	t_tetrino	*t;
 
 	ft_putstr("in resolve result\n");
-	if (grid->table != NULL)
+	/*if (grid->table != NULL)
 		free(grid->table);
 	grid->table = (char *)malloc(sizeof(char) *
-							grid->min_size * grid->min_size);
-	ft_memset(grid->table, 48, grid->min_size * grid->min_size);
+							grid->min_size * grid->min_size);*/
+	ft_memset(&grid->table, 48, 15 * 15);
 	t = grid->tetrino_input;
 	while (t)
 	{

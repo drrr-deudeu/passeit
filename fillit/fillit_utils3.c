@@ -86,7 +86,8 @@ int					is_valid_shape(unsigned short int t)
 			return (count);
 		count++;
 	}
-	return (0);
+
+	return (-1);
 }
 
 int					is_on(unsigned short int tetrino, int index)

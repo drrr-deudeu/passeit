@@ -12,7 +12,7 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
-
+#include <stdio.h>
 typedef	struct				s_span
 {
 	int						start;
@@ -34,7 +34,7 @@ typedef struct				s_grid
 {
 	t_tetrino				*tetrino_input;
 	int						min_size;
-	char					*table;
+	char					table[15][15];
 }							t_grid;
 
 # define SHAPE '#'
@@ -50,6 +50,9 @@ typedef struct				s_grid
 # define FILE_NOT_FORMAT "Wrong Format\n"
 
 # define SHAPES_MAX 19
+
+int							get_x(int i, int row_size);
+int							get_y(int i, int row_size);
 
 void						delete_list_tetrino(t_tetrino **lst);
 t_tetrino					*alloc_struct_tetrino(int *d,

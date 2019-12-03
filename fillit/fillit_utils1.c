@@ -74,7 +74,7 @@ t_tetrino			*make_s_tetrino(unsigned short int t)
 	if (index != 4)
 		return (NULL);
 	count = is_valid_shape(t);
-	if (!count)
+	if (count == -1)
 		return (NULL);
 	return (alloc_struct_tetrino(tmp, t, count));
 }
