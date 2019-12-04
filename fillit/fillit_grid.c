@@ -36,7 +36,7 @@ int				display_result(t_grid *grid)
 	return (1);
 }
 
-static int		insert_to_table(t_grid *grid, t_tetrino *t)
+static int		insert_in_table(t_grid *grid, t_tetrino *t)
 {
 	int		x;
 	int		y;
@@ -49,28 +49,27 @@ static int		insert_to_table(t_grid *grid, t_tetrino *t)
 		{
 			if (is_candidate(grid, x, y, t))
 			{
-				x++;
+				
+				return (1);
 			}
 			y++;
 		}
 		x++;
 	}
-	return (1);
-
-	/*grid->table[t->index[0]]*/
-	return (1);
+	return (0);
 }
 
 int				resolve_dummy(t_grid *grid)
 {
 	t_tetrino	*t;
+	int 		res;
 
 	ft_putstr("in resolve result\n");
 	ft_memset(&grid->table, '.', GRID_SIZE_MAX * GRID_SIZE_MAX);
 	t = grid->tetrino_input;
 	while (t)
 	{
-		insert_to_table(grid, t);
+		res = insert_in_table(grid, t);
 		t = t->next;
 	}
 	return (1);

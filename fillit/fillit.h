@@ -16,7 +16,7 @@
 
 # define SHAPE '#'
 # define EMPTY '.'
-# define GRID_SIZE_MAX 15
+# define GRID_SIZE_MAX 11
 # define SHAPES_MAX 19
 
 typedef	struct				s_span
@@ -51,6 +51,7 @@ typedef struct				s_grid
 # define FILE_NOT_FORMAT "Wrong Format\n"
 
 int							is_candidate(t_grid *g, int x, int y, t_tetrino *t);
+int							check_line(char *ptr, t_tetrino *t, int lline);
 
 void						delete_list_tetrino(t_tetrino **lst);
 t_tetrino					*alloc_struct_tetrino(int *d,
