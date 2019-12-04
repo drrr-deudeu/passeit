@@ -61,6 +61,7 @@ typedef struct				s_grid
 
 t_gbox						*init_box(t_gbox *b);
 t_gbox						*extend_box(t_gbox *b, int x, int y);
+int							resize_up(t_grid *grid);
 
 int							is_candidate(t_grid *g, int x, int y, t_tetrino *t);
 int							insert_tetrino(t_grid *g,

@@ -14,22 +14,23 @@
 #include "libft.h"
 #include "fillit.h"
 #include <stdio.h>
+
 int				display_result(t_grid *grid)
 {
-	int		x;
-	int		y;
+	int		row;
+	int		col;
 
-	x = 0;
-	while (x < grid->csize)
+	row = 0;
+	while (row < grid->csize)
 	{
-		y = 0;
-		while (y < grid->csize)
+		col = 0;
+		while (col < grid->csize)
 		{
-			ft_putchar(grid->table[y][x]);
-			y++;
+			ft_putchar(grid->table[row][col]);
+			col++;
 		}
 		ft_putchar('\n');
-		x++;
+		row++;
 	}
 	ft_putchar('\n');
 	return (1);
@@ -37,23 +38,20 @@ int				display_result(t_grid *grid)
 
 static int		insert_in_table(t_grid *grid, t_tetrino *t)
 {
-	int		x;
-	int		y;
+	int		row;
+	int		col;
 
-	x = grid->gbox.x;
-	while (x < grid->csize)
+	row = grid->gbox.y;
+	while (row < grid->csize)
 	{
-		y = grid->gbox.y;
-		while (y < grid->csize)
+		col = grid->gbox.x;
+		while (col < grid->csize)
 		{
-			if (is_candidate(grid, x, y, t))
-			{
-				insert_tetrino(grid, x, y, t);
-				return (1);
-			}
-			y++;
+			if (is_candidate(grid, row, col, t))
+				return (insert_tetrino(grid, row, col, t));
+			col++;
 		}
-		x++;
+		row++;
 	}
 	return (0);
 }
@@ -63,14 +61,23 @@ int				resolve_dummy(t_grid *grid)
 	t_tetrino	*t;
 	int			res;
 
-	ft_putstr("in resolve result\n");
-	ft_memset(&grid->table, '.', GRID_SIZE_MAX * GRID_SIZE_MAX);
+	ft_memset(&grid->table, EMPTY, GRID_SIZE_MAX * GRID_SIZE_MAX);
 	t = grid->tetrino_input;
 	while (t)
 	{
 		res = insert_in_table(grid, t);
-		display_result(grid);
-		t = t->next;
+		if (res == 0)
+		{
+			if (resize_up(grid) == 0)
+				return (0);
+			else
+				t = grid->tetrino_input;
+		}
+		else
+		{
+			display_result(grid);
+			t = t->next;
+		}
 	}
 	return (1);
 }
