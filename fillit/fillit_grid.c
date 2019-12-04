@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "libft.h"
 #include "fillit.h"
-
+#include <stdio.h>
 int				display_result(t_grid *grid)
 {
 	int		x;

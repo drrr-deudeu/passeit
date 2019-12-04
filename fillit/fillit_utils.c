@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
+
 int		check_line(char *ptr, t_tetrino *t, int lline)
 {
 	int		start;
@@ -20,7 +20,6 @@ int		check_line(char *ptr, t_tetrino *t, int lline)
 	start = t->spanx[lline].start;
 	end = start + t->spanx[lline].span;
 	ptr = ptr + start;
-	printf("%c %d %d\n",*ptr,start, end);
 	while (start < end)
 	{
 		if (*ptr != EMPTY)
@@ -58,7 +57,7 @@ int		is_candidate(t_grid *grid, int x, int y, t_tetrino *t)
 	while (count < 4)
 	{
 		if (t->spanx[count].start != -1)
-			if (check_line(&(grid->table[x][y]), t, count) == 0)
+			if (check_line(&(grid->table[x][y + count]), t, count) == 0)
 				return (0);
 		count++;
 	}
@@ -73,7 +72,7 @@ int		insert_tetrino(t_grid *grid, int x, int y, t_tetrino *t)
 	while (count < 4)
 	{
 		if (t->spanx[count].start != -1)
-			write_line(&(grid->table[x][y]), t, count, grid->marker);
+			write_line(&(grid->table[x][y + count]), t, count, grid->marker);
 		count++;
 	}
 	grid->marker++;
