@@ -63,8 +63,6 @@ t_gbox						*init_box(t_gbox *b);
 t_gbox						*extend_box(t_gbox *b, int x, int y);
 
 int							is_candidate(t_grid *g, int x, int y, t_tetrino *t);
-int							check_line(char *ptr, t_tetrino *t, int l);
-int							write_line(char *ptr, t_tetrino *t, int l, int m);
 int							insert_tetrino(t_grid *g,
 											int x, int y, t_tetrino *t);
 

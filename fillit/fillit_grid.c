@@ -25,10 +25,10 @@ int				display_result(t_grid *grid)
 		y = 0;
 		while (y < grid->csize)
 		{
-			ft_putchar(grid->table[x][y]);
+			ft_putchar(grid->table[y][x]);
 			y++;
 		}
-		ft_putchar(' ');
+		ft_putchar('\n');
 		x++;
 	}
 	ft_putchar('\n');

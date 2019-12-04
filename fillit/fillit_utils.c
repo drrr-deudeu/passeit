@@ -50,15 +50,23 @@ int		write_line(char *ptr, t_tetrino *t, int lline, int marker)
 int		is_candidate(t_grid *grid, int x, int y, t_tetrino *t)
 {
 	int		count;
+	int		start;
+	int		end;
 
 	if ((x + t->box[0] >= grid->csize) || (y + t->box[1] >= grid->csize))
 		return (0);
 	count = 0;
-	while (count < 4)
+	while (count < 4 && t->spanx[count].start != -1)
 	{
-		if (t->spanx[count].start != -1)
-			if (check_line(&(grid->table[x][y + count]), t, count) == 0)
+		start = t->spanx[count].start;
+		end = start + t->spanx[count].span;
+		while (start < end)
+		{
+			if (grid->table[x + start][y + count] != EMPTY)
 				return (0);
+			start++;
+		}
+		
 		count++;
 	}
 	return (1);
@@ -67,12 +75,19 @@ int		is_candidate(t_grid *grid, int x, int y, t_tetrino *t)
 int		insert_tetrino(t_grid *grid, int x, int y, t_tetrino *t)
 {
 	int		count;
+	int		start;
+	int		end;
 
 	count = 0;
-	while (count < 4)
+	while (count < 4 && t->spanx[count].start != -1)
 	{
-		if (t->spanx[count].start != -1)
-			write_line(&(grid->table[x][y + count]), t, count, grid->marker);
+		start = t->spanx[count].start;
+		end = start + t->spanx[count].span;
+		while (start < end)
+		{
+			grid->table[x + start][y + count] = grid->marker;
+			start++;
+		}
 		count++;
 	}
 	grid->marker++;
