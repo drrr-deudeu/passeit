@@ -86,7 +86,6 @@ int					is_valid_shape(unsigned short int t)
 			return (count);
 		count++;
 	}
-
 	return (-1);
 }
 

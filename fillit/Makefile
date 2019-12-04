@@ -20,7 +20,8 @@ SRCS		= 	fillit.c \
 				tetrino_bound.c \
 				fillit_grid.c \
 				tetrino_print.c \
-				tetrino_world.c
+				tetrino_world.c \
+				gbox.c 
 
 DEPENDS		:= $(patsubst %.c,%.d,$(SRCS))
 

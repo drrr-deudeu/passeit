@@ -17,19 +17,18 @@
 int				display_result(t_grid *grid)
 {
 	int		x;
+	int		y;
 
-	ft_putstr("in display result\n");
-	x = 1;
-	char *ptr  = (char *)grid->table;
-	/*grid->csize)*/
-	while (x <= grid->csize * grid->csize)
+	x = 0;
+	while (x < grid->csize)
 	{
-		ft_putchar(*ptr++);
-		if (x % grid->csize == 0)
+		y = 0;
+		while (y < grid->csize)
 		{
-			ptr += (15 - grid->csize);
-			ft_putchar('\n');
+			ft_putchar(grid->table[x][y]);
+			y++;
 		}
+		ft_putchar(' ');
 		x++;
 	}
 	ft_putchar('\n');
@@ -41,15 +40,15 @@ static int		insert_in_table(t_grid *grid, t_tetrino *t)
 	int		x;
 	int		y;
 
-	x = 0;
+	x = grid->gbox.x;
 	while (x < grid->csize)
 	{
-		y = 0;
+		y = grid->gbox.y;
 		while (y < grid->csize)
 		{
 			if (is_candidate(grid, x, y, t))
 			{
-				
+				insert_tetrino(grid, x, y, t);
 				return (1);
 			}
 			y++;
@@ -62,7 +61,7 @@ static int		insert_in_table(t_grid *grid, t_tetrino *t)
 int				resolve_dummy(t_grid *grid)
 {
 	t_tetrino	*t;
-	int 		res;
+	int			res;
 
 	ft_putstr("in resolve result\n");
 	ft_memset(&grid->table, '.', GRID_SIZE_MAX * GRID_SIZE_MAX);
@@ -70,6 +69,7 @@ int				resolve_dummy(t_grid *grid)
 	while (t)
 	{
 		res = insert_in_table(grid, t);
+		display_result(grid);
 		t = t->next;
 	}
 	return (1);
@@ -101,7 +101,9 @@ t_grid			*init_grid(t_tetrino *lst)
 	grid = (t_grid *)malloc(sizeof(t_grid));
 	if (grid == NULL)
 		return (NULL);
+	grid->marker = 65;
 	grid->tetrino_input = lst;
+	init_box(&grid->gbox);
 	grid->csize = get_csize(grid);
 	return (grid);
 }
