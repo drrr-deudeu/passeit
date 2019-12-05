@@ -41,10 +41,10 @@ static int		insert_in_table(t_grid *grid, t_tetrino *t)
 	int		row;
 	int		col;
 
-	row = grid->gbox.y;
+	row = 0; /*grid->gbox.y;*/
 	while (row < grid->csize)
 	{
-		col = grid->gbox.x;
+		col = 0; /*grid->gbox.x;*/
 		while (col < grid->csize)
 		{
 			if (is_candidate(grid, row, col, t))

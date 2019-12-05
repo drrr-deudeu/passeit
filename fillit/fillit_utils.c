@@ -57,7 +57,7 @@ int		insert_tetrino(t_grid *grid, int row, int col, t_tetrino *t)
 		count++;
 	}
 	grid->marker++;
-	extend_box(&(grid->gbox), row + t->box[1], col + t->box[0]);
+	/*extend_box(&(grid->gbox), row + t->box[1], col + t->box[0]);*/
 	return (1);
 }
 
