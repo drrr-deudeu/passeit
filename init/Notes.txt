@@ -1,0 +1,32 @@
+$ nslookup e2r3p7.42.fr
+server:		10.51.1.42
+Address:	10.51.1.42#53
+
+Name:		e2r3p7.42.fr
+Address: 10.12.3.7
+
+
+publique address:
+
+$ dig +short myip.opendns.com @resolver1.opendns.com
+$ dig TXT +short o-o.myaddr.l.google.com @ns1.google.com
+
+$ host myip.opendns.com resolver1.opendns.com
+Using domain server:
+Name: resolver1.opendns.com
+Address: 208.67.222.222#53
+Aliases:
+
+myip.opendns.com has address 62.210.33.187
+Host myip.opendns.com not found: 3(NXDOMAIN)
+Host myip.opendns.com not found: 3(NXDOMAIN)
+
+
+How can I check the current DNS servers of a domain?
+
+
+$ more  /etc/hosts
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+
