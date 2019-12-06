@@ -1,1 +1,6 @@
-ifconfig | grep "ether" 
+echo broadcast:
+ifconfig en0 | grep broadcast | cut -d ' ' -f 2
+echo address ip same :
+#ifconfig en0 | grep inet | cut -d " " -f 2
+arp -a
+
